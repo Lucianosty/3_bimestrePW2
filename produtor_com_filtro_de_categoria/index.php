@@ -21,6 +21,8 @@
         <button type="submit">Procurar produtos</button>
     </form>
 
+    <a href="criar.php">Adicionar Produtos</a>
+
     <?php
     include 'funcoes.php';
 

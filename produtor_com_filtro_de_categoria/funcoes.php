@@ -14,6 +14,7 @@ $sql = "SELECT
             categorias ON produtos.categoria_id = categorias.id_cat 
         WHERE 
             categorias.id_cat = ?";
+
 $result = $conexao->query($sql); //query é a ação de conectar no banco de dados
 
 $produtos = [];//criando um array vazio
