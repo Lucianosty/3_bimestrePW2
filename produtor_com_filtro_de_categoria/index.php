@@ -6,19 +6,14 @@
     <title>Mercado Marcio Rodrigo</title>
 </head>
 <body>
-    <form action="index.php" method="post">
-        <h2>Busca de produtos do Mercado Marcio Rodrigo</h2>
-        <input type="hidden" nome="acao" value="pesquisar">
-
-        <label for="categoria">Categorias dos produtos:</label>
-        
-        <select name="" id="">
-            <option value="tecnologia">Tecnologia</option>
-            <option value="doces">Doces</option>
-            <option value="bebidas">Bebidas</option>
-            </select>
-
-        <button type="submit">Procurar produtos</button>
+<h2>Buscar por Categoria com Filtro</h2>
+    <form method="post">
+        <select name="categoria_id">
+            <?php foreach ($categorias as $cat): ?>
+                <option value="<?= $cat['id'] ?>"><?= $cat['nome'] ?></option>
+            <?php endforeach; ?>
+        </select>
+        <button type="submit">Buscar</button>
     </form>
 
     <a href="criar.php">Adicionar Produtos</a>
