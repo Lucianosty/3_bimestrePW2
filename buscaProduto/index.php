@@ -18,11 +18,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atacadão Vilela</title>
+    <title>Mercearia Marcio Rodrigo</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div></div>
+
+Mercearia Marcio Rodrigo
+
     <h2>Buscar por Categoria com Filtro</h2>
     <form method="post">
         <select name="id_cat">
