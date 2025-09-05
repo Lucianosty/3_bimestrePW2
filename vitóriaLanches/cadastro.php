@@ -4,11 +4,11 @@ require_once 'funcoes.php';
  $conn = conectarBanco();
 
      
- if ($_SERVER['REQUEST_METHOD'] === 'POST') { //verificacao se ja foi feito um posto
+ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //verificacao se ja foi feito um post
     $acao = $_POST['acao'] ?? '';
  
-    if ($acao === 'criar') { //Se foi feito um post ele ta vendo qual acao ele ira fazer
-        criarTarefa($_POST);
+    if ($acao === 'criarCad') { //Se foi feito um post ele ta vendo qual acao ele ira fazer
+        CadastroCliente($_POST ['nomeUsuario'], $_POST['senhaUsuario']);
     }
     }
 ?>
@@ -21,17 +21,24 @@ require_once 'funcoes.php';
     <title>Document</title>
 </head>
 <body>
-    <h1>Cadastros</h1>
-    <form method="post" action="acao">
-        <label for="usuario">Usuario:</label>
-        <input type="text" id="usuario" name="usuario">
+    <h1>Cadastro</h1>
+    <form method="post" action="cadastro.php">
+        <input type="hidden" name="acao" value="criarCad">
 
-        <label for="senha">Senha:</label>
-        <input type="text" id="senha" name="senha">
 
-        <a href="login.php">Voltar</a>
+        Nome: <input type="text" placeholder="Digite seu nome" name="nomeUsuario">
 
-        <button type="submit">Continuar Cadastro</button>
+
+        Senha: <input type="text" placeholder="Digite sua senha" name="senhaUsuario">
+
+    
+
+        <button type="submit">Cadastrar</button>
+
+    
 </form>
+
+
+
 </body>
 </html>

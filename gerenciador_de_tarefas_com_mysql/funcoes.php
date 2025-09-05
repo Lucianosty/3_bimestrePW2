@@ -21,7 +21,7 @@ function lerTarefas() {
 function criarTarefa($dados) { //criando o crirar tarefas recebendo um parametro
     $conn = conectarBanco(); //Abrir a conexao de novo
     $sql = "INSERT INTO Tarefas (data_hora, nome_tar, descricao_tar, status_tar) VALUES (?, ?, ?, ?)"; //ele vai colocar insert dentro da tabela  com as informacoes, ja as interrogacoes ele coloca pra posicionar
-    $stmt = $conn->prepare($sql); //depois ele executa o prepare, que nao executa diretamente ele apenas guarda para depois executar
+    $stmt = $conn->prepare($sql); //é uma preparacao da biblioteca do my sql data
 //ela ta organinzado a data praticamente
     $dataHora = $dados['data'] . ' ' . $dados['hora']; 
     $stmt->bind_param("ssss", $dataHora, $dados['titulo'], $dados['descricao'], $dados['status']);

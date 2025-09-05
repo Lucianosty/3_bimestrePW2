@@ -1,18 +1,3 @@
-<?php
-require_once 'funcoes.php';
-
- $conn = conectarBanco();
-
-     
- if ($_SERVER['REQUEST_METHOD'] === 'POST') { //verificacao se ja foi feito um post
-    $acao = $_POST['acao'] ?? '';
- 
-    if ($acao === 'criar') { //Se foi feito um post ele ta vendo qual acao ele ira fazer
-        criarTarefa($_POST);
-    }
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,20 +6,21 @@ require_once 'funcoes.php';
     <title>Document</title>
 </head>
 <body>
-    <h1>Vitória Lanches</h1>
-        <h2>Login</h2>
-    <form method="post">
-        <label for="usuario">Usuario:</label>
-        <input type="text" id="usuario" name="usuario">
+    <h1>Login</h1>
+    <form method="post" action="login.php">
+        <input type="hidden" name="acao" value="EntrarLog">
+        
 
-        <label for="senha">Senha:</label>
-        <input type="text" id="senha" name="senha">
+        Usuário: <input type="text" placeholder="Digite seu nome" name="nomeUsuario">
+
+
+        Senha: <input type="password" placeholder="Digite sua senha" name="senhaUsuario">
+
+    
 
         <button type="submit">Entrar</button>
 
-        <p>Não tem uma conta cadastre por
-        <a href="cadastro.php">aqui</a>
-        </p>
-    </form>
+</form>
+
 </body>
 </html>
