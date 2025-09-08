@@ -18,9 +18,28 @@
 
     }
 
-    
+    function LoginCliente($nome, $senha, $tipo_selecionado){
+    $conn = conectarBanco();
+    $sql = "SELECT TB_USUARIOS_TIPO FROM tb_usuarios WHERE TB_USUARIOS_USERNAME = ? AND TB_USUARIOS_PASSWORD = ? AND TB_USUARIOS_TIPO = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sss", $nome, $senha, $tipo_selecionado);
+    $stmt->execute();
 
+    $result = $stmt -> get_result();
+    if ($result->num_rows == 1) {
+      $nomeVariavel = $result->fetch_assoc();
+      $tipo = $nomeVariavel['TB_USUARIOS_TIPO'];
 
+      $stmt->close();
+      $conn->close(); 
+      return $tipo;
+    }
+    else {
+      $stmt->close();
+      $conn->close();
+      return false;
+    }
+    }
 
 
 
