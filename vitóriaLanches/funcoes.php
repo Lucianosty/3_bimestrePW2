@@ -18,27 +18,30 @@
 
     }
 
-    function LoginCliente($nome, $senha, $tipo_selecionado){
+    function LoginCliente($nome, $senha){
     $conn = conectarBanco();
-    $sql = "SELECT TB_USUARIOS_TIPO FROM tb_usuarios WHERE TB_USUARIOS_USERNAME = ? AND TB_USUARIOS_PASSWORD = ? AND TB_USUARIOS_TIPO = ?";
+    $sql = "SELECT TB_USUARIOS_TIPO FROM tb_usuarios WHERE TB_USUARIOS_USERNAME = ? AND TB_USUARIOS_PASSWORD = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $nome, $senha, $tipo_selecionado);
+    $stmt->bind_param("ss", $nome, $senha);
     $stmt->execute();
 
     $result = $stmt -> get_result();
-    if ($result->num_rows == 1) {
-      $nomeVariavel = $result->fetch_assoc();
-      $tipo = $nomeVariavel['TB_USUARIOS_TIPO'];
 
-      $stmt->close();
-      $conn->close(); 
-      return $tipo;
-    }
-    else {
-      $stmt->close();
-      $conn->close();
-      return false;
-    }
+    $tipo = null;
+
+    if ($result->num_rows>0) {
+        $nome = $result -> fetch_assoc();
+        if ($nome ['TB_USUARIOS_TIPO']=='Administrador') {
+            $tipo = "Administrador";
+        }
+        header ("location: index.php?tipo=$tipo");
+    }else {
+        echo ("Falha no Login!");
+    } 
+
+    $stmt->close();
+    $conn->close();
+  
     }
 
 
@@ -108,6 +111,7 @@ function MostrarProd($id_categoria){
     return $produtos;
 
     }
+
 
 
 

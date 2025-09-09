@@ -6,24 +6,8 @@ $conn = conectarBanco();
    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nome = $_POST['nomeUsuario'] ?? '';
         $senha = $_POST['senhaUsuario'] ?? '';
-        $tipo_selecionado = $_POST['tipo'] ?? '';
-    $tipo = LoginCliente($nome, $senha, $tipo_selecionado);
-    
-    if ($tipo == false) {
-        echo "Usuário ou senha incorretos!";
-    }
-    elseif ($tipo == 'Administrador') {
-        echo "Bem vindo administrador";
-        header (location: 'gerenciarProd.php');
-        exit();
-    }
-    elseif ($tipo == 'Cliente') {
-                echo "Bem vindo $nome";
-                header (location:'gerenciarProd.php');
-                exit()
-            }
-
-    }
+        LoginCliente($nome, $senha);
+   }
 ?>
 
 <!DOCTYPE html>
@@ -42,13 +26,6 @@ $conn = conectarBanco();
 
 
         Senha: <input type="password" placeholder="Digite sua senha" name="senhaUsuario">
-
-        <select name="tipo" id="">
-            <option value="Cliente">cliente</option>
-            <option value="Administrador">Administrador</option>
-        </select>
-
-    
 
         <button type="submit">Entrar</button>
 

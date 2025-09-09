@@ -11,8 +11,8 @@
     if ($acao === 'criar') {
         CadProduto($_POST['nomeprod'],$_POST['descriprod'], $_POST['precoprod'], $_POST['tipoprod']);
     }
-}
 
+ }
 $produtos = [];
 
 // Verifica se houve envio do formulário de busca
