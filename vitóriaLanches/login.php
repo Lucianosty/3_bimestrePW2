@@ -6,7 +6,7 @@ $conn = conectarBanco();
    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nome = $_POST['nomeUsuario'] ?? '';
         $senha = $_POST['senhaUsuario'] ?? '';
-        LoginCliente($nome, $senha);
+        VerificarUser($nome, $senha);
    }
 ?>
 

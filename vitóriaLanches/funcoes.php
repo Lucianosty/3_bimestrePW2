@@ -18,31 +18,60 @@
 
     }
 
-    function LoginCliente($nome, $senha){
+
+
+
+    function VerificarUser($nome, $senha)
+{
+ 
     $conn = conectarBanco();
-    $sql = "SELECT TB_USUARIOS_TIPO FROM tb_usuarios WHERE TB_USUARIOS_USERNAME = ? AND TB_USUARIOS_PASSWORD = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $nome, $senha);
+ 
+ 
+    $sql = "SELECT * FROM tb_usuarios WHERE TB_USUARIOS_USERNAME = ? AND TB_USUARIOS_PASSWORD = ?";
+ 
+    $stmt= $conn->prepare($sql);
+    $stmt->bind_Param("ss" , $nome,$senha);
+ 
     $stmt->execute();
-
-    $result = $stmt -> get_result();
-
+ 
+    $result = $stmt->get_result();
+ 
     $tipo = null;
-
-    if ($result->num_rows>0) {
-        $nome = $result -> fetch_assoc();
-        if ($nome ['TB_USUARIOS_TIPO']=='Administrador') {
-            $tipo = "Administrador";
-        }
-        header ("location: index.php?tipo=$tipo");
-    }else {
-        echo ("Falha no Login!");
-    } 
-
-    $stmt->close();
-    $conn->close();
-  
+ 
+if ($result->num_rows > 0) {
+    $usuario = $result->fetch_assoc();
+ 
+ 
+ 
+    if($usuario['TB_USUARIOS_TIPO'] == 'administrador')
+    {
+        echo "<form id='loginForm' method='POST' action='index.php'>";
+        echo "<input type='hidden' name='tipo' value='administrador'>";
+        echo '<script>document.getElementById("loginForm").submit();</script>';
+ 
+        echo "</form>";
+       
+       
+       
     }
+    else{
+    header("Location: index.php");
+}
+   
+ 
+   
+} else {
+    echo "<script>";
+    echo "alert('falha no login')  ";
+    echo "</script>";
+}
+ 
+ 
+  $stmt->close();
+  $conn->close();
+ 
+}
+ 
 
 
 
@@ -111,6 +140,7 @@ function MostrarProd($id_categoria){
     return $produtos;
 
     }
+
 
 
 
