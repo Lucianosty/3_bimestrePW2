@@ -9,10 +9,19 @@
     $acao = $_POST['acao'] ?? '';
 
     if ($acao === 'criar') {
-        CadProduto($_POST['nomeprod'],$_POST['descriprod'], $_POST['precoprod'], $_POST['tipoprod']);
+        CadProd($_POST['nomeprod'], $_POST['descriprod'], $_POST['precoprod'], $_POST['tipoprod']);
+    } elseif ($acao === 'atualizar') {
+        atualizarProduto($_POST);
+    } elseif ($acao === 'excluir') {
+        excluirProduto($_POST['id']);
+    } elseif ($acao === 'criartipo') {
+        criarCategoria($_POST['nometipo']);
     }
+    
+}
 
- }
+
+ 
 $produtos = [];
 
 // Verifica se houve envio do formulário de busca
@@ -61,6 +70,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['TB_TIPO_PRODUTO_ID'])
 
     </form>
 
+        <h1>Cadastro dos tipos de produto</h1>
+            <form action="gerenciarProd.php" method="post">
+
+            <input type="hidden" name="acao" value="criartipo">
+
+            
+        <input type="text" placeholder="Digite o nome do tipo de produto" name="nometipo">
+
+        <button type="submit">
+            Cadastrar tipo de produto
+        </button>
+
+            </form>
 
 
     <h1>Produtos Cadastrados</h1>
@@ -87,7 +109,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['TB_TIPO_PRODUTO_ID'])
         <td><?= htmlspecialchars($umprodutoporvez['desc_produto']) ?></td>
         <td>R$ <?= number_format($umprodutoporvez['preco'], 2, ',', '.') ?></td>
         <td><?= htmlspecialchars($umprodutoporvez['nome_categoria']) ?></td>
+        <td>
+            <?php
+              echo "<div class='acoes'>";
+              echo "<form method='post' action='gerenciarProd.php' style='display:inline;'>";
+              echo "<input type='hidden' name='acao' value='excluir'>";
+              echo "<input type='hidden' name='id' value='" . $umprodutoporvez['id_prod'] . "'>";
+              echo "<button type='submit'>Excluir</button>";
+              echo "</form>";
+            ?>
+        </td>
+        <td>
+            <?php
+        echo "<form method='get' action='alterarProduto.php' style='display:inline;'>";
+        echo "<input type='hidden' name='id' value='alterar'" . $umprodutoporvez['id_prod'] . "'>";
+        echo "<button type='submit'>Editar</button>";
+        echo "</form>";
+        ?>
+        </td>
     </tr>
+
+
 <?php endforeach; ?>
 </table>
 </body>
