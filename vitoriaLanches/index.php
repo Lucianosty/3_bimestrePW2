@@ -16,6 +16,65 @@ $tipo = isset($_POST['tipo']) ? $_POST['tipo'] : '';
 
     <style>
         
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #F9F9F9;
+    color: #000000;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+header {
+    background-color: #E32219;
+    padding: 7px 0;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+header ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+header ul li a:hover {
+    background-color: #e65c00;
+}
+
+
+main {
+    flex: 1;
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+main h2 {
+    color: #ff6600;
+    margin-bottom: 20px;
+}
+
+/* Rodapé */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+}
+
 
     </style>
 
