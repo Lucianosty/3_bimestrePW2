@@ -4,6 +4,21 @@ include_once 'funcoes.php';
 $tipo = isset($_POST['tipo']) ? $_POST['tipo'] : '';
 ?>
 
+<?php
+require_once 'funcoes.php';
+
+ $conn = conectarBanco();
+
+     
+ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //verificacao se ja foi feito um post
+    $acao = $_POST['acao'] ?? '';
+ 
+    if ($acao === 'criarCad') { //Se foi feito um post ele ta vendo qual acao ele ira fazer
+        CadastroCliente($_POST ['nomeUsuario'], $_POST['senhaUsuario']);
+    }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,17 +31,17 @@ $tipo = isset($_POST['tipo']) ? $_POST['tipo'] : '';
 
 <header>
 <ul>
-    <li><a href="indexfalso.php?pagina=cadastro">Cadastrar</a></li>
-    <li><a href="indexfalso.php?pagina=login">Entrar</a></li>
+    <li><a href="indexverdadeiro.php?pagina=cadastro">Cadastrar</a></li>
+    <li><a href="indexverdadeiro.php?pagina=login">Entrar</a></li>
 
     <?php
     if ($tipo == 'administrador') {
         echo '<li><a href="#">Gerenciar pedidos</a></li>';
         echo '<li><a href="#">Relatórios</a></li>';
-        echo '<li><a href="gerenciarProd.php">Gerenciar produtos</a></li>';
+        echo '<li><a href="indexverdadeiro.php?pagina=gerenciarProd">Gerenciar produtos</a></li>';
         echo '<li><a href="#">Clientes</a></li>';
     } else{
-        echo "<li><a href='indexfalso.php?pagina=fazerPedidoFalso'>Fazer pedido</a></li>";
+        echo "<li><a href='indexverdadeiro.php?pagina=fazerPedidoFalso'>Fazer pedido</a></li>";
     }
     ?>
 </ul>

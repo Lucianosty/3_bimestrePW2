@@ -14,6 +14,11 @@ $tipo = isset($_POST['tipo']) ? $_POST['tipo'] : '';
 </head>
 <body>
 
+    <style>
+        
+
+    </style>
+
 <header>
 <ul>
     <li><a href="index.php?pagina=cadastro">Cadastrar</a></li>

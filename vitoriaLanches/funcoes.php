@@ -14,7 +14,8 @@
     $stmt->close();
     $conn->close();
 
-    header('location: indexfalso.php?pagina=login');
+    header('Location: indexverdadeiro.php?pagina=login');
+
 
 
 
@@ -186,10 +187,10 @@ function EditProd($dados)
     $stmt->bind_param(
         "sssdi",
         $dados['nomeProd'],
-        $dados['id_tipoProd_filtro'], // nome correto do campo do tipo
+        $dados['id_tipoProd_filtro'], 
         $dados['descricaoProd'],
         $dados['preco_unit'],
-        $dados['id_prod'] // ID vai no final
+        $dados['id_prod'] 
     );
     $stmt->execute();
 
@@ -199,6 +200,18 @@ function EditProd($dados)
     exit();
 }
 
+
+function excluirCat($id){
+      $conn = conectarBanco();
+        $sql = "DELETE FROM tb_tipo_produto WHERE TB_TIPO_PRODUTO_ID = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->close();
+        $conn->close();
+        header('location: gerenciarProd.php');
+
+}
 
 
 ?>

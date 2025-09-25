@@ -15,7 +15,7 @@ require_once 'funcoes.php';
 
 
     <h1>Cadastro</h1>
-    <form method="post" action="cadastro.php">
+    <form method="post" action="indexverdadeiro.php?pagina=cadastro">
         <input type="hidden" name="acao" value="criarCad">
 
 

@@ -16,6 +16,8 @@
         excluirProduto($_POST['id']);
     } elseif ($acao === 'criartipo') {
         criarCategoria($_POST['nometipo']);
+    } elseif ($acao === 'excluirCategoria'){
+        excluirCat($_POST['id']);
     }
 }
 
@@ -82,6 +84,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['TB_TIPO_PRODUTO_ID'])
 
             </form>
 
+            <h2>Tipos de Produto Cadastrados</h2>
+<table>
+    <tr><th>Nome dos tipos de produtos</th></tr>
+    <?php foreach ($categorias as $tipo): ?>
+        <tr>
+            <td><?= htmlspecialchars($tipo['TB_TIPO_PRODUTO_DESC']) ?></td>
+            <td>
+                <form method="post" action="gerenciarProd.php" style="display:inline;">
+                    <input type="hidden" name="acao" value="excluirCategoria">
+                    <input type="hidden" name="id" value="<?= $tipo['TB_TIPO_PRODUTO_ID'] ?>">
+                    <button type="submit">Excluir</button>
+                </form>
+
+                <form method="get" action="editarCategoria.php" style="display:inline;">
+                    <input type="hidden" name="idTipo" value="<?= $tipo['TB_TIPO_PRODUTO_ID'] ?>">
+                    <button type="submit">Editar</button>
+                </form>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>
 
 
 
